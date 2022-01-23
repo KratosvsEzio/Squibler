@@ -1,0 +1,33 @@
+<section class="h-screen overflow-y-auto scroll-smooth px-3 flex flex-col pb-8">
+    <h1>Ibook Sections</h1>
+
+    <!-- Send -->
+    <a routerLink="/send" class="mb-3" mat-flat-button color="primary">Send Draft</a>
+
+    <div class="flex justify-between mb-4">
+      <!-- Back -->
+      <button class="flex-1 mr-2" mat-flat-button color="primary" (click)="changeForm('prev')">
+        <mat-icon>chevron_left</mat-icon> Back
+      </button>
+
+      <br/>
+
+      <!-- Add new -->
+      <button class="flex-1 ml-2" mat-flat-button color="primary" (click)="openDialog()">
+        <mat-icon>add</mat-icon> Add New Section
+      </button>
+    </div>
+
+    <form class="flex-1" [formGroup]="ibookForm">
+      <div formArrayName="sections" *ngFor="let item of sections.controls; let i = index;">
+        <button mat-flat-button class="text-left w-full capitalize" [formGroupName]="i" (click)="changeForm('next', item)">
+          {{getSectionName(item)}}
+        </button>
+      </div>
+      
+      <div *ngIf="!sections.controls.length" class="text-center font-semibold text-lg text-gray-600">
+        No sections are available
+      </div>
+    </form>
+
+</section>

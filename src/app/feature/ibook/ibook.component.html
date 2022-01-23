@@ -1,0 +1,16 @@
+<section class="h-screen flex overflow-hidden container mx-auto px-4 py-5">
+    <aside class="flex-none w-1/4">
+        <app-aside (currentForm)="setCurrentForm($event)"></app-aside>
+    </aside>
+    <main class="flex-auto w-3/4">
+        <app-main [currentForm]="currentForm"></app-main>
+    </main>
+    <aside class="flex-none transition-all ease-linear duration-300 overflow-hidden" [ngClass]="{
+        'w-1/4': ($status | async) == true, 
+        'w-0': ($status | async) == false,
+        'p-px': ($status | async) == true, 
+        'p-0': ($status | async) == false
+    }">
+        <app-word-lookup></app-word-lookup>
+    </aside>
+</section>

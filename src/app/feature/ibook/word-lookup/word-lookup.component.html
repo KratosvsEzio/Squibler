@@ -1,0 +1,49 @@
+<article class="">
+    <div class="flex items-center p-2 bg-gray-300 shadow-input focus-within:outline outline-1" tabindex=0>
+        <mat-icon class="m-2 text-gray-600 ">search</mat-icon>
+        <input class="bg-transparent text-gray-900 w-full p-2 font-medium capitalize outline-0" disabled placeholder="search" [value]="data?.word">
+    </div>
+
+    <br />
+
+    <div class="p-5">
+        <h1 *ngIf="data.syllables?.length">
+            <span *ngFor="let syllable of data.syllables; let i=index">{{syllable}}<span *ngIf="data?.syllables?.[i+1]">'</span></span>
+        </h1>
+
+        <p class="text-gray-600 font-semibold" *ngIf="data.pronunciation">/{{data.pronunciation}}/</p>
+
+        <div *ngIf="data.partOfSpeech">
+            <p class="m-0 font-semibold">{{data.partOfSpeech}}</p>
+            <p class="text-gray-600">
+                <span>{{data.partOfSpeech}}</span>: <span class="font-semibold">{{data.word}}</span>
+            </p>
+        </div>
+
+        <ol class="list-decimal">
+            <li>
+                <ng-container *ngIf="data.definition">
+                    <span>{{data.definition}};</span>
+                </ng-container>
+
+                <ng-container *ngIf="data.examples?.length">
+                    <span *ngFor="let example of data.examples | slice:0:1"> following.: "{{example}}".</span>
+                </ng-container>
+
+                <ng-container *ngIf="data.synonyms?.length">
+                    <div>
+                        <span class="text-gray-600">synonyms: </span>
+                        <span class="text-cyan-600" *ngFor="let synonym of data.synonyms; let i=index">{{synonym}}<span *ngIf="data.antonyms?.[i+1]">, </span></span>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="data.antonyms?.length">
+                    <div>
+                        <span class="text-gray-600">antonyms: </span>
+                        <span class="text-cyan-600" *ngFor="let antonym of data.antonyms; let i=index">{{antonym}}<span *ngIf="data.antonyms?.[i+1]">, </span></span>
+                    </div>
+                </ng-container>
+            </li>
+        </ol>
+    </div>
+</article>

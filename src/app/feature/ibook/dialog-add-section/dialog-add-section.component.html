@@ -1,0 +1,11 @@
+<h1> Enter new section name.</h1>
+<div mat-dialog-content>
+  <mat-form-field cdkFocusInitial class="w-full" appearance="outline">
+    <mat-label>Section name</mat-label>
+    <input matInput [(ngModel)]="sectionName">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>No Thanks</button>
+  <button mat-button [mat-dialog-close]="sectionName">Ok</button>
+</div>

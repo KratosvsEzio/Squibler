@@ -1,0 +1,22 @@
+
+<article class="h-screen overflow-y-auto scroll-smooth px-3">
+    <form *ngIf="currentForm" [formGroup]="currentForm">
+        <h1>Ibook Editor</h1>
+        <h2>Section {{currentForm?.get('sectionName').value}}</h2>
+        <quill-editor 
+            class="mb-3"
+            #quill
+            formControlName="text"
+            placeholder="Enter Text"
+            [modules]="quillConfig"
+            (dblclick)="onSelectionChanged($event)"
+            (click)="removeSearchWord()"
+            (onSelectionChanged)="onSelectionChanged($event)"
+        >
+        </quill-editor>
+    </form>
+
+    <div *ngIf="!currentForm" class="text-center font-semibold text-lg text-gray-600 relative top-2/4 -translate-y-2/4">
+        Click on section to start using editor.
+    </div>
+</article>
